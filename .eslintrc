@@ -1,0 +1,47 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": [
+    "next",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@next/next/recommended",
+    "next/core-web-vitals",
+    "p5js"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    // Allows for the parsing of modern ECMAScript features
+    "ecmaVersion": "latest",
+    // Allows for the use of imports
+    "sourceType": "module",
+    // https://blog.geographer.fr/eslint-parser-services, https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "prettier", "@next/eslint-plugin-next"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "react": {
+        "version": "detect"
+      }
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx"
+      ]
+    }
+  },
+}
+
