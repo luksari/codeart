@@ -1,3 +1,3 @@
-import { TekstowoContainer } from '@src/containers/tekstowo/TekstowoContainer';
+import { TextyContainer } from '@src/containers/tekstowo/TextyContainer';
 
-export default TekstowoContainer;
+export default TextyContainer;

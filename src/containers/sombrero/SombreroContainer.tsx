@@ -1,6 +1,5 @@
 import styles from './SombreroContainer.module.scss';
 import Image from 'next/image';
-import pepe from '@src/assets/images/pepe-sombrero.gif';
 
 import dynamic from 'next/dynamic';
 import {
@@ -24,7 +23,10 @@ export const SombreroContainer = () => {
         <div className={styles['title-wrapper']}>
           <h1 className={styles.title}>Sombrero</h1>
           <div className={styles['image-wrapper']}>
-            <Image src={pepe} alt="Funny from with sombrero and shac-shacs" />
+            <Image
+              src={'images/pepe-sombrero.gif'}
+              alt="Funny from with sombrero and shac-shacs"
+            />
           </div>
         </div>
         <p className={styles.paragraph}>

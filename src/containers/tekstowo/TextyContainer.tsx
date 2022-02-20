@@ -1,14 +1,14 @@
-import styles from './Tekstowo.module.scss';
+import styles from './Texty.module.scss';
 
 import dynamic from 'next/dynamic';
 import nlpArr from '@src/assets/palette.json';
-import { tekstowoDraw, tekstowoPreload, tekstowoSetup } from './Tekstowo.p5';
+import { textyDraw, textyPreload, textySetup } from './Texty.p5';
 
 const palette = nlpArr[3];
 
 const Sketch = dynamic(() => import('react-p5'), { ssr: false });
 
-export const TekstowoContainer = () => {
+export const TextyContainer = () => {
   return (
     <div
       className={styles.container}
@@ -21,9 +21,9 @@ export const TekstowoContainer = () => {
         <p className={styles.paragraph}>AAAAAAAA</p>
         <Sketch
           className={styles.canvas}
-          preload={tekstowoPreload}
-          draw={tekstowoDraw}
-          setup={tekstowoSetup}
+          preload={textyPreload}
+          draw={textyDraw}
+          setup={textySetup}
         />
       </div>
     </div>

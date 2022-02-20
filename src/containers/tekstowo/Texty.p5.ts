@@ -31,11 +31,11 @@ let ascii = ''; //empty string
 
 let img: p5Types.Image;
 
-export const tekstowoPreload = (p: p5Types) => {
+export const textyPreload = (p: p5Types) => {
   img = p.loadImage('./images/kitty-pixeled.png');
 };
 
-export const tekstowoSetup = (p: p5Types, parent: Element) => {
+export const textySetup = (p: p5Types, parent: Element) => {
   p.createCanvas(img.width, img.height).parent(parent);
   // p.image(img, 0, 0);
   p.textAlign(p.CENTER, p.CENTER);
@@ -61,6 +61,6 @@ export const tekstowoSetup = (p: p5Types, parent: Element) => {
   } //y loop
 };
 
-export const tekstowoDraw = (p: p5Types) => {
+export const textyDraw = (p: p5Types) => {
   p.text(ascii, 200, 200);
 };
