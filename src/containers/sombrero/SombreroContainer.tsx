@@ -24,8 +24,9 @@ export const SombreroContainer = () => {
           <h1 className={styles.title}>Sombrero</h1>
           <div className={styles['image-wrapper']}>
             <Image
-              src={'images/pepe-sombrero.gif'}
+              src={'/images/pepe-sombrero.gif'}
               alt="Funny from with sombrero and shac-shacs"
+              layout="fill"
             />
           </div>
         </div>
