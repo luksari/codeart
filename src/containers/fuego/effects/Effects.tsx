@@ -1,16 +1,20 @@
 import React from 'react';
-import { Bloom, EffectComposer, SSAO } from '@react-three/postprocessing';
+import {
+  DepthOfField,
+  EffectComposer,
+  Vignette,
+} from '@react-three/postprocessing';
 
 export const Effects = () => {
   return (
     <EffectComposer>
-      <SSAO radius={0.4} intensity={50} luminanceInfluence={0.4} color="red" />
-      <Bloom
-        intensity={1.25}
-        kernelSize={2}
-        luminanceThreshold={0.85}
-        luminanceSmoothing={0.0}
+      <DepthOfField
+        focusDistance={0.45}
+        focalLength={0.2}
+        bokehScale={3}
+        height={480}
       />
+      <Vignette eskil={false} offset={0.1} darkness={0.7} />
     </EffectComposer>
   );
 };

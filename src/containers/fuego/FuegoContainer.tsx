@@ -1,38 +1,50 @@
 import { Canvas } from '@react-three/fiber';
-import React, { useRef } from 'react';
-import * as THREE from 'three';
-import { Effects } from './effects/Effects';
+import React, { Suspense } from 'react';
 import { Light } from './light/Light';
 import { Particles } from './particles/Particles';
 import { Sparks } from './sparks/Sparks';
 import { InteractiveText } from './interactiveText/InteractiveText';
-
-const palette = ['#271e2c', '#613c51', '#844343', '#d37338', '#ffe279'];
-const sparksPalette = [
-  '#ea7434',
-  '#f6a50b',
-  '#A63923',
-  '#BA2622',
-  '#E38E35',
-  '#F3D046',
-];
+import {
+  fuegoPalette,
+  sparksPalette,
+} from '@src/containers/fuego/FuegoContainer.utils';
+import {
+  Bloom,
+  EffectComposer,
+  Outline,
+  Selection,
+  Select,
+  DepthOfField,
+  Vignette,
+} from '@react-three/postprocessing';
+import { Fire } from '@src/containers/fuego/fire/fire';
+import { Effects } from './effects/Effects';
 
 export const FuegoContainer = () => {
   return (
     <Canvas
       shadows
-      gl={{ stencil: false, antialias: false }}
       style={{
         position: 'absolute',
         top: 0,
       }}
-      camera={{ position: [0, 0, 30], fov: 45 }}
+      gl={{
+        powerPreference: 'high-performance',
+        antialias: false,
+        stencil: false,
+        depth: false,
+      }}
+      camera={{ position: [0, 0, 30], fov: 45, far: 45 }}
     >
-      <Light />
-      <Particles count={10} />
-      <Sparks count={100} colors={sparksPalette} radius={4} />
-      <InteractiveText />
-      <Effects />
+      <color attach="background" args={['#020202']} />
+      <Suspense fallback={null}>
+        <Fire color="#000000" scale={[17, 12, 2]} position={[0, 4, 4]} />
+        <Light />
+        <Particles count={10} />
+        <InteractiveText />
+        <Sparks count={100} colors={sparksPalette} radius={4} />
+        <Effects />
+      </Suspense>
     </Canvas>
   );
 };

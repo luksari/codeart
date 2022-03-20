@@ -1,9 +1,19 @@
+import {
+  fuegoPalette,
+  sparksPalette,
+} from '@src/containers/fuego/FuegoContainer.utils';
+
 export const Light = () => {
   return (
     <group>
-      <ambientLight intensity={0.3} color="#FFFEA3" />
-      <directionalLight position={[2, 1, 6]} intensity={0.6} color="#FFD897" />
-      <pointLight position={[0, 0, 0]} intensity={4} color="#FF7C66" />
+      <ambientLight intensity={0} color={sparksPalette[1]} />
+
+      <pointLight
+        color={sparksPalette[4]}
+        intensity={1.5}
+        position={[0, -5, 11]}
+        shadow-mapSize={[125, 256]}
+      />
     </group>
   );
 };

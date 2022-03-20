@@ -62,7 +62,7 @@ export const Sparks = ({ count, colors, radius }: SparksProps) => {
         const pos = new THREE.Vector3(
           Math.cos(idx) * radius * r(),
           Math.sin(idx) * radius * r(),
-          r() * 2
+          0
         );
         const points = Array.from({ length: count }).map((_, index) => {
           const angle = (index / count) * Math.PI * 2;
@@ -77,7 +77,7 @@ export const Sparks = ({ count, colors, radius }: SparksProps) => {
             .clone();
         });
         const curve = new THREE.CatmullRomCurve3(points)
-          .getPoints(12)
+          .getPoints(count)
           .flatMap((vec) => vec.toArray());
 
         return {
@@ -111,7 +111,7 @@ export const Sparks = ({ count, colors, radius }: SparksProps) => {
 
   return (
     <group ref={ref}>
-      <group position={[-radius + 3.5, -radius + 1, 8]} scale={[0.15, 0.1, 1]}>
+      <group position={[-radius + 4, -radius + 1, 8]} scale={[0.16, 0.1, 1]}>
         {lines.map((props, index) => (
           <Fatline key={index} {...props} />
         ))}

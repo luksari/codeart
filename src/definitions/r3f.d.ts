@@ -3,6 +3,7 @@ import { TextGeometry } from 'three-stdlib/geometries/TextGeometry';
 import { MeshLine, MeshLineMaterial } from 'meshline';
 import { MeshWobbleMaterial } from '@react-three/drei';
 import { UnrealBloomPass } from 'three-stdlib';
+import { FireMaterial } from '@src/containers/fuego/fire/fireMaterial';
 
 declare global {
   namespace JSX {
@@ -15,6 +16,7 @@ declare global {
         MeshWobbleMaterial,
         typeof MeshWobbleMaterial
       >;
+      fireMaterial: Object3DNode<FireMaterial, typeof FireMaterial>;
     }
   }
 }

@@ -1,6 +1,7 @@
 import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import { useSpring } from '@react-spring/core';
 import { TextMesh } from '@src/components/three/textMesh/TextMesh';
+import { fuegoPalette } from '@src/containers/fuego/FuegoContainer.utils';
 
 export const InteractiveText = () => {
   const [toggleVal, setToggleVal] = useState(0);
@@ -24,7 +25,7 @@ export const InteractiveText = () => {
   const animScale = animValue.to([0, 1], [0.2, 0.4]);
 
   const animPosY = animValue.to([0, 1], [initY, -3]);
-  const animColor = animValue.to([0, 1], ['#FAC000', '#D73502']);
+  const animColor = animValue.to([0, 1], ['#ffffff', '#D73502']);
 
   useEffect(() => {
     document.body.style.cursor = hovered ? 'pointer' : 'auto';
