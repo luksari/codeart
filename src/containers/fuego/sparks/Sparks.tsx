@@ -1,5 +1,5 @@
 import { extend, useFrame, useThree } from '@react-three/fiber';
-import { MutableRefObject, useMemo, useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Group } from 'three';
 import * as THREE from 'three';
 import * as meshline from 'meshline';
@@ -15,7 +15,6 @@ type Spark = {
 
 type SparksProps = {
   count: number;
-  mouse: MutableRefObject<[number, number]>;
   colors: string[];
   radius: number;
 };
@@ -56,7 +55,7 @@ const Fatline = ({ curve, width, color, speed }: FatlineProps) => {
 
 const r = () => Math.max(0.01, Math.random());
 
-export const Sparks = ({ count, mouse, colors, radius }: SparksProps) => {
+export const Sparks = ({ count, colors, radius }: SparksProps) => {
   const lines = useMemo<Spark[]>(
     () =>
       Array.from({ length: count }).map((_, idx) => {
@@ -95,16 +94,16 @@ export const Sparks = ({ count, mouse, colors, radius }: SparksProps) => {
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
 
-  useFrame(() => {
+  useFrame(({ mouse }) => {
     if (ref.current) {
       ref.current.rotation.x = THREE.MathUtils.lerp(
         ref.current.rotation.x,
-        mouse.current[1] / aspect / 400,
+        mouse.y / aspect / 400,
         0.1
       );
       ref.current.rotation.y = THREE.MathUtils.lerp(
         ref.current.rotation.x,
-        mouse.current[0] / aspect / 200,
+        mouse.x / aspect / 200,
         0.1
       );
     }

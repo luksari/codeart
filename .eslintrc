@@ -18,13 +18,13 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     // Allows for the parsing of modern ECMAScript features
-    "ecmaVersion": "latest",
+    "ecmaVersion": 2021,
     // Allows for the use of imports
     "sourceType": "module",
     // https://blog.geographer.fr/eslint-parser-services, https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "prettier", "@next/eslint-plugin-next"],
+  "plugins": ["@typescript-eslint", "@next/eslint-plugin-next"],
   "settings": {
     "import/resolver": {
       "node": {

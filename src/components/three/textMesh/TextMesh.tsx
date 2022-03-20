@@ -1,10 +1,9 @@
 import { useLoader, GroupProps, extend } from '@react-three/fiber';
-import React, { FC, useLayoutEffect, useMemo, useRef } from 'react';
-import * as THREE from 'three';
+import React, { FC, useMemo, useRef } from 'react';
 import { a, AnimatedProps } from '@react-spring/three';
 
 import { FontLoader, TextGeometry } from 'three-stdlib';
-import { Mesh, MeshStandardMaterial } from 'three';
+import { Mesh } from 'three';
 import { MeshWobbleMaterial } from '@react-three/drei';
 
 type TextMeshProps = AnimatedProps<GroupProps & { color: string }> & {

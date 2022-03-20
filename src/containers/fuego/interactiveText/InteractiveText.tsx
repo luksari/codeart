@@ -1,6 +1,6 @@
 import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import { useSpring } from '@react-spring/core';
-import { TextMesh } from '@src/components/textMesh/TextMesh';
+import { TextMesh } from '@src/components/three/textMesh/TextMesh';
 
 export const InteractiveText = () => {
   const [toggleVal, setToggleVal] = useState(0);
