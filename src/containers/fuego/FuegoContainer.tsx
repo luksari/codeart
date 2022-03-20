@@ -20,7 +20,7 @@ export const FuegoContainer = () => {
       camera={{ position: [0, 0, 30], fov: 45 }}
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;
-        gl.setClearColor(new THREE.Color('#020207'));
+        gl.setClearColor(new THREE.Color('#bada55'));
       }}
     >
       <Light />
@@ -28,19 +28,12 @@ export const FuegoContainer = () => {
       <Sparks
         count={100}
         mouse={mouse}
-        colors={[
-          '#ea7434',
-          '#f6a50b',
-          '#A63923',
-          '#BA2622',
-          '#E38E35',
-          '#F3D046',
-        ]}
+        colors={['#ea7434', '#f6a50b', '#A63923', '#BA2622', '#E38E35', '#F3D046']}
         radius={4}
       />
       <Preload all />
-      <Effects />
       <InteractiveText />
+      <Effects />
     </Canvas>
   );
 };
