@@ -17,6 +17,7 @@
     "@react-three/postprocessing": "^2.2.5",
     "glsl-random": "^0.0.5",
     "glslify": "^7.1.1",
+    "leva": "^0.9.23",
     "meshline": "^2.0.4",
     "next": "12.1.0",
     "postprocessing": "^6.25.0",

@@ -41,7 +41,7 @@ export const TextMesh: FC<TextMeshProps> = ({
   );
 
   return (
-    <a.group {...groupProps} scale={[0.1 * size, 0.1 * size, 0.3]}>
+    <a.group scale={[0.1 * size, 0.1 * size, 0.1]} {...groupProps}>
       <a.mesh
         ref={mesh}
         castShadow
@@ -52,9 +52,9 @@ export const TextMesh: FC<TextMeshProps> = ({
         <textGeometry args={[children, config]} />
         <MeshWobbleMaterial
           attach="material"
-          metalness={0.9}
-          roughness={1}
-          speed={1.2}
+          metalness={0.2}
+          roughness={0}
+          speed={1.7}
           factor={0.1}
         />
       </a.mesh>

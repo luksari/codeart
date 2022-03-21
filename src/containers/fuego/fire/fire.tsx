@@ -31,7 +31,6 @@ export const Fire = ({ color, ...props }: FireProps) => {
     if (!ref.current?.material) {
       return;
     }
-    console.log(ref.current?.material.uniforms);
 
     texture.magFilter = texture.minFilter = THREE.LinearFilter;
     texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
@@ -46,7 +45,7 @@ export const Fire = ({ color, ...props }: FireProps) => {
   return (
     <mesh ref={ref} {...props}>
       <boxGeometry />
-      <fireMaterial transparent />
+      <fireMaterial transparent depthTest={false} alphaWrite={false} />
     </mesh>
   );
 };

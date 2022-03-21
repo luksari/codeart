@@ -34,7 +34,7 @@ let ascii = ''; //empty string
 let img: p5Types.Image;
 
 export const textyPreload = (p: p5Types) => {
-  img = p.loadImage('./images/grubin.jpg');
+  img = p.loadImage('./images/kitty-pixeled.jpg');
 };
 
 export const textySetup = (p: p5Types, parent: Element) => {

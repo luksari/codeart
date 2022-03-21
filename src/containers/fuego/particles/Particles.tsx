@@ -31,13 +31,14 @@ export const Particles = ({ count }: ParticlesProps) => {
       return;
     }
     // Makes the light follow the mouse
-    light.current.position.set(mouse.x / aspect, -mouse.y / aspect, 0);
+    light.current.position.set(mouse.x / aspect, -mouse.y / aspect, 5);
 
-    particles.forEach((particle, index) =>
-      moveParticle(
-        particle,
-        index
-      )({ mouse, particles, mesh: mesh.current!, dummyObj: dummyObj.current })
+    particles.forEach((particle) =>
+      moveParticle(particle)({
+        mouse,
+        mesh: mesh.current!,
+        dummyObj: dummyObj.current,
+      })
     );
 
     mesh.current.instanceMatrix.needsUpdate = true;
@@ -45,9 +46,9 @@ export const Particles = ({ count }: ParticlesProps) => {
 
   return (
     <group>
-      <pointLight ref={light} distance={10} intensity={4} color="lightblue" />
+      <pointLight ref={light} distance={10} intensity={1} color="red" />
       <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-        <dodecahedronGeometry args={[0.15, 0]} />
+        <dodecahedronGeometry args={[0, 1]} />
         <meshPhongMaterial color="#000" />
       </instancedMesh>
     </group>

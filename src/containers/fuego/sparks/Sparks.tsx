@@ -1,8 +1,10 @@
-import { extend, useFrame, useThree } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { extend, GroupProps, useFrame, useThree } from '@react-three/fiber';
+import { useRef } from 'react';
 import { Group } from 'three';
 import * as THREE from 'three';
 import * as meshline from 'meshline';
+import { generateSparks } from '@src/containers/fuego/sparks/Sparks.utils';
+import { useMouseParallax } from '@src/hooks/useMouseParallax/useMouseParallax';
 
 extend(meshline);
 
@@ -11,12 +13,6 @@ type Spark = {
   width: number;
   speed: number;
   curve: number[];
-};
-
-type SparksProps = {
-  count: number;
-  colors: string[];
-  radius: number;
 };
 
 type FatlineProps = {
@@ -42,80 +38,39 @@ const Fatline = ({ curve, width, color, speed }: FatlineProps) => {
       <meshLineMaterial
         attach="material"
         ref={material}
-        transparent
         depthTest={true}
         lineWidth={width}
         color={color}
+        transparent
         dashArray={0.1}
-        dashRatio={0.9}
+        dashRatio={0.96}
       />
     </mesh>
   );
 };
 
-const r = () => Math.max(0.01, Math.random());
+type SparksProps = GroupProps & {
+  count: number;
+  colors: string[];
+  radius: number;
+};
 
-export const Sparks = ({ count, colors, radius }: SparksProps) => {
-  const lines = useMemo<Spark[]>(
-    () =>
-      Array.from({ length: count }).map((_, idx) => {
-        const pos = new THREE.Vector3(
-          Math.cos(idx) * radius * r(),
-          Math.sin(idx) * radius * r(),
-          0
-        );
-        const points = Array.from({ length: count }).map((_, index) => {
-          const angle = (index / count) * Math.PI * 2;
-          return pos
-            .add(
-              new THREE.Vector3(
-                Math.cos(angle) * radius * r(),
-                Math.sin(angle) * radius * r(),
-                0
-              )
-            )
-            .clone();
-        });
-        const curve = new THREE.CatmullRomCurve3(points)
-          .getPoints(count)
-          .flatMap((vec) => vec.toArray());
+export const Sparks = ({
+  count,
+  colors,
+  radius,
+  ...groupProps
+}: SparksProps) => {
+  const linesRef = generateSparks({ count, colors, radius });
 
-        return {
-          color: colors[Math.floor(colors.length * Math.random())],
-          width: Math.max(0.01, 0.03 / 100),
-          speed: Math.max(0.001, 0.002 * Math.random()),
-          curve,
-        };
-      }),
-    [colors, count, radius]
-  );
-
-  const ref = useRef<Group>();
-  const { size, viewport } = useThree();
-  const aspect = size.width / viewport.width;
-
-  useFrame(({ mouse }) => {
-    if (ref.current) {
-      ref.current.rotation.x = THREE.MathUtils.lerp(
-        ref.current.rotation.x,
-        mouse.y / aspect / 400,
-        0.1
-      );
-      ref.current.rotation.y = THREE.MathUtils.lerp(
-        ref.current.rotation.x,
-        mouse.x / aspect / 200,
-        0.1
-      );
-    }
-  });
+  const ref = useRef<Group | null>(null);
+  useMouseParallax(ref, { invertXY: false });
 
   return (
-    <group ref={ref}>
-      <group position={[-radius + 4, -radius + 1, 8]} scale={[0.16, 0.1, 1]}>
-        {lines.map((props, index) => (
-          <Fatline key={index} {...props} />
-        ))}
-      </group>
+    <group ref={ref} scale={[0.16, 0.1, 1]} {...groupProps}>
+      {linesRef.map((props, index) => (
+        <Fatline key={index} {...props} />
+      ))}
     </group>
   );
 };

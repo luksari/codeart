@@ -16,15 +16,14 @@ export const generateParticles = (count: number) => {
 };
 
 type MoveParticlesParams = {
-  particles: Particle[];
   dummyObj: Object3D;
   mesh: InstancedMesh;
   mouse: Vector2;
 };
 
 export const moveParticle =
-  (particle: Particle, i: number) =>
-  ({ dummyObj, mesh, mouse }: MoveParticlesParams): Object3D => {
+  (particle: Particle) =>
+  ({ dummyObj, mouse }: MoveParticlesParams): Object3D => {
     // Run through the randomized data to calculate some movement
     let { t } = particle;
     const { factor, speed, xFactor, yFactor, zFactor } = particle;
@@ -40,7 +39,7 @@ export const moveParticle =
       (particle.mx / 10) * a +
         xFactor +
         Math.cos((t / 10) * factor) +
-        (Math.sin(t * 1) * factor) / 10,
+        (Math.sin(t) * factor) / 10,
       (particle.my / 10) * b +
         yFactor +
         Math.sin((t / 10) * factor) +

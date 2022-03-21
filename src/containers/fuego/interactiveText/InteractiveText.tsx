@@ -1,9 +1,9 @@
 import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import { useSpring } from '@react-spring/core';
 import { TextMesh } from '@src/components/three/textMesh/TextMesh';
-import { fuegoPalette } from '@src/containers/fuego/FuegoContainer.utils';
+import { GroupProps } from '@react-three/fiber';
 
-export const InteractiveText = () => {
+export const InteractiveText = (props: GroupProps) => {
   const [toggleVal, setToggleVal] = useState(0);
   const [{ animValue }] = useSpring(
     () => ({
@@ -22,9 +22,9 @@ export const InteractiveText = () => {
   const handlePointerOut = useCallback(() => setHover(false), []);
   const initY = -1;
 
-  const animScale = animValue.to([0, 1], [0.2, 0.4]);
+  const animScale = animValue.to([0, 1], [0.2, 0.35]);
 
-  const animPosY = animValue.to([0, 1], [initY, -3]);
+  const animPosY = animValue.to([0, 1], [initY, -0.75]);
   const animColor = animValue.to([0, 1], ['#ffffff', '#D73502']);
 
   useEffect(() => {
@@ -32,10 +32,10 @@ export const InteractiveText = () => {
   }, [hovered]);
 
   return (
-    <group>
+    <group {...props}>
       <Suspense fallback={null}>
         <TextMesh
-          position={[-3, initY, 8]}
+          position={[-3, initY, 0]}
           size={1}
           fontSize={16}
           color={animColor}
