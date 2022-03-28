@@ -9,7 +9,6 @@
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "eslint:recommended",
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@next/next/recommended",
     "next/core-web-vitals",

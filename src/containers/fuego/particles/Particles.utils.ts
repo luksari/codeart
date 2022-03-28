@@ -1,5 +1,6 @@
 import { Particle } from '@src/containers/fuego/particles/Particles.types';
 import { InstancedMesh, Object3D, Vector2 } from 'three';
+import { MutableRefObject } from 'react';
 
 export const generateParticles = (count: number) => {
   const temp = [];
@@ -16,14 +17,13 @@ export const generateParticles = (count: number) => {
 };
 
 type MoveParticlesParams = {
-  dummyObj: Object3D;
-  mesh: InstancedMesh;
+  dummy: Object3D;
   mouse: Vector2;
 };
 
 export const moveParticle =
   (particle: Particle) =>
-  ({ dummyObj, mouse }: MoveParticlesParams): Object3D => {
+  ({ dummy, mouse }: MoveParticlesParams): Object3D => {
     // Run through the randomized data to calculate some movement
     let { t } = particle;
     const { factor, speed, xFactor, yFactor, zFactor } = particle;
@@ -35,7 +35,7 @@ export const moveParticle =
     particle.mx += (mouse.x - particle.mx) * 0.01;
     particle.my += (mouse.y * -1 - particle.my) * 0.01;
     // Update the dummy object
-    dummyObj.position.set(
+    dummy.position.set(
       (particle.mx / 10) * a +
         xFactor +
         Math.cos((t / 10) * factor) +
@@ -49,9 +49,9 @@ export const moveParticle =
         Math.cos((t / 10) * factor) +
         (Math.sin(t * 3) * factor) / 10
     );
-    dummyObj.scale.set(s, s, s);
-    dummyObj.rotation.set(s * 2, s * 2, s * 2);
-    dummyObj.updateMatrix();
+    dummy.scale.setScalar(s);
+    dummy.rotation.set(s * 2, s * 2, s * 2);
+    dummy.updateMatrix();
 
-    return dummyObj;
+    return dummy;
   };

@@ -1,4 +1,4 @@
-export type Particle = {
+export type ParticleModel = {
   t: number;
   factor: number;
   speed: number;

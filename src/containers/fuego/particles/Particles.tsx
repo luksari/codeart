@@ -1,15 +1,43 @@
-import { useFrame, useThree } from '@react-three/fiber';
+import {
+  Euler,
+  GroupProps,
+  useFrame,
+  useThree,
+  Vector3,
+} from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
+import { Instance, Instances } from '@react-three/drei';
 import { InstancedMesh, Object3D, PointLight } from 'three';
 import {
   generateParticles,
   moveParticle,
 } from '@src/containers/fuego/particles/Particles.utils';
-import { Particle } from '@src/containers/fuego/particles/Particles.types';
+import { ParticleModel } from '@src/containers/fuego/particles/Particles.types';
 
 type ParticlesProps = {
   count: number;
+};
+
+type ParticleProps = {
+  particle: ParticleModel;
+} & GroupProps;
+
+const Particle = ({ particle, ...rest }: ParticleProps) => {
+  const ref = useRef<Object3D | null>();
+  useFrame((state) => {
+    if (!ref.current) {
+      return;
+    }
+
+    moveParticle(particle)({ dummy: ref.current, mouse: state.mouse });
+  });
+
+  return (
+    <group {...rest}>
+      <Instance ref={ref} />
+    </group>
+  );
 };
 
 export const Particles = ({ count }: ParticlesProps) => {
@@ -18,39 +46,33 @@ export const Particles = ({ count }: ParticlesProps) => {
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
 
-  const dummyObj = useRef<Object3D>(new THREE.Object3D());
   // Generate some random positions, speed factors and timings
-  const particles = useMemo<Particle[]>(
+  const particles = useMemo<ParticleModel[]>(
     () => generateParticles(count),
     [count]
   );
 
   // The innards of this hook will run every frame
   useFrame(({ mouse }) => {
-    if (!light.current || !mesh.current || !dummyObj.current) {
+    if (!light.current || !mesh.current) {
       return;
     }
-    // Makes the light follow the mouse
-    light.current.position.set(mouse.x / aspect, -mouse.y / aspect, 5);
 
-    particles.forEach((particle) =>
-      moveParticle(particle)({
-        mouse,
-        mesh: mesh.current!,
-        dummyObj: dummyObj.current,
-      })
-    );
-
-    mesh.current.instanceMatrix.needsUpdate = true;
+    light.current.position.set(mouse.x / aspect, -mouse.y / aspect, 0);
   });
 
   return (
     <group>
-      <pointLight ref={light} distance={10} intensity={1} color="red" />
-      <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-        <dodecahedronGeometry args={[0, 1]} />
-        <meshPhongMaterial color="#000" />
-      </instancedMesh>
+      <pointLight ref={light} distance={1} intensity={4} color="red" />
+      <Instances
+        range={particles.length}
+        geometry={new THREE.TetrahedronGeometry(0.3, 1)}
+        material={new THREE.MeshPhongMaterial({ color: '#fff' })}
+      >
+        {particles.map((particle, i) => (
+          <Particle particle={particle} key={i} />
+        ))}
+      </Instances>
     </group>
   );
 };

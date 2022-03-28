@@ -30,7 +30,7 @@ export const FuegoContainer = () => {
         <Suspense fallback={() => <p>Loading...</p>}>
           <Fire color="#ffffff" scale={[17, 12, 4]} position={[0.5, 4, -5]} />
           <Light />
-          <Particles count={10} />
+          <Particles count={1000} />
           <InteractiveText position={[0, 0, 0]} scale={1.4} />
           <Sparks
             count={100}
