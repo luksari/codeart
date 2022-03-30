@@ -1,7 +1,4 @@
-import {
-  fuegoPalette,
-  sparksPalette,
-} from '@src/containers/fuego/FuegoContainer.utils';
+import { sparksPalette } from '@src/containers/fuego/FuegoContainer.utils';
 
 export const Light = () => {
   return (

@@ -8,6 +8,7 @@ import { sparksPalette } from '@src/containers/fuego/FuegoContainer.utils';
 
 import { Fire } from '@src/containers/fuego/fire/fire';
 import { Effects } from '@src/containers/fuego/effects/Effects';
+import * as THREE from 'three';
 
 export const FuegoContainer = () => {
   return (
@@ -19,18 +20,19 @@ export const FuegoContainer = () => {
           top: 0,
         }}
         gl={{
+          toneMapping: THREE.ReinhardToneMapping,
           powerPreference: 'high-performance',
-          antialias: false,
-          stencil: false,
-          depth: false,
+          antialias: true,
+          depth: true,
         }}
-        camera={{ position: [0, 0, 30], fov: 45, far: 45 }}
+        camera={{ position: [0, 0, 27], fov: 40, far: 50 }}
       >
-        <color attach="background" args={['#020202']} />
         <Suspense fallback={() => <p>Loading...</p>}>
+          <color attach="background" args={['#020202']} />
+          <fog attach="fog" args={[sparksPalette[3], 45, 60]} />
           <Fire color="#ffffff" scale={[17, 12, 4]} position={[0.5, 4, -5]} />
           <Light />
-          <Particles count={1000} />
+          <Particles count={100} />
           <InteractiveText position={[0, 0, 0]} scale={1.4} />
           <Sparks
             count={100}

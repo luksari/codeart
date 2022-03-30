@@ -1,10 +1,4 @@
-import {
-  Euler,
-  GroupProps,
-  useFrame,
-  useThree,
-  Vector3,
-} from '@react-three/fiber';
+import { GroupProps, useFrame, useThree } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { Instance, Instances } from '@react-three/drei';
@@ -14,6 +8,7 @@ import {
   moveParticle,
 } from '@src/containers/fuego/particles/Particles.utils';
 import { ParticleModel } from '@src/containers/fuego/particles/Particles.types';
+import { fuegoPalette } from '@src/containers/fuego/FuegoContainer.utils';
 
 type ParticlesProps = {
   count: number;
@@ -25,12 +20,13 @@ type ParticleProps = {
 
 const Particle = ({ particle, ...rest }: ParticleProps) => {
   const ref = useRef<Object3D | null>();
-  useFrame((state) => {
+
+  useFrame(({ mouse }) => {
     if (!ref.current) {
       return;
     }
 
-    moveParticle(particle)({ dummy: ref.current, mouse: state.mouse });
+    moveParticle(particle)({ dummy: ref.current, mouse });
   });
 
   return (
@@ -62,12 +58,11 @@ export const Particles = ({ count }: ParticlesProps) => {
   });
 
   return (
-    <group>
-      <pointLight ref={light} distance={1} intensity={4} color="red" />
+    <group scale={[0.75, 0.75, 0.75]}>
       <Instances
         range={particles.length}
-        geometry={new THREE.TetrahedronGeometry(0.3, 1)}
-        material={new THREE.MeshPhongMaterial({ color: '#fff' })}
+        geometry={new THREE.DodecahedronGeometry(0.2, 0)}
+        material={new THREE.MeshPhongMaterial({ color: fuegoPalette[2] })}
       >
         {particles.map((particle, i) => (
           <Particle particle={particle} key={i} />
