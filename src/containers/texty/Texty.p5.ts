@@ -2,6 +2,8 @@ import p5Types from 'p5';
 
 const characters = [
   ' ',
+  ' ',
+  ' ',
   '`',
   '.',
   ',-',
@@ -32,17 +34,17 @@ let ascii = ''; //empty string
 let img: p5Types.Image;
 
 export const textyPreload = (p: p5Types) => {
-  img = p.loadImage('./images/kitty-pixeled.png');
+  img = p.loadImage('./images/kitty-pixeled.jpg');
 };
 
 export const textySetup = (p: p5Types, parent: Element) => {
   p.createCanvas(img.width, img.height).parent(parent);
-  // p.image(img, 0, 0);
+  p.image(img, 0, 0);
   p.textAlign(p.CENTER, p.CENTER);
-  p.textFont('monospace', 8);
+  p.textFont('monospace', 5);
   p.textStyle(p.NORMAL);
 
-  const res = img.width / 100;
+  const res = img.height / 200;
 
   img.loadPixels();
 
@@ -51,7 +53,7 @@ export const textySetup = (p: p5Types, parent: Element) => {
       const sample = img.get(x, y);
 
       const all = sample[0] + sample[1] + sample[2];
-      const conversion = p.floor(p.map(all, 0, 765, characters.length - 1, 0));
+      const conversion = p.floor(p.map(all, 0, 1000, characters.length - 1, 0));
 
       ascii += characters[conversion];
     } //end x loop
@@ -62,5 +64,5 @@ export const textySetup = (p: p5Types, parent: Element) => {
 };
 
 export const textyDraw = (p: p5Types) => {
-  p.text(ascii, 200, 200);
+  p.text(ascii, 0, 0);
 };
