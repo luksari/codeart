@@ -3,8 +3,16 @@ import React, { Suspense } from 'react';
 import { Light } from './light/Light';
 import { Particles } from './particles/Particles';
 import { Sparks } from './sparks/Sparks';
-import { InteractiveText } from './interactiveText/InteractiveText';
 import { sparksPalette } from '@src/containers/fuego/FuegoContainer.utils';
+
+import dynamic from 'next/dynamic';
+
+const InteractiveText = dynamic(
+  () => import('./interactiveText/InteractiveText'),
+  {
+    suspense: true,
+  }
+);
 
 import { Fire } from '@src/containers/fuego/fire/fire';
 import { Effects } from '@src/containers/fuego/effects/Effects';
@@ -27,7 +35,7 @@ export const FuegoContainer = () => {
         }}
         camera={{ position: [0, 0, 27], fov: 40, far: 50 }}
       >
-        <Suspense fallback={() => <p>Loading...</p>}>
+        <Suspense fallback={null}>
           <color attach="background" args={['#020202']} />
           <fog attach="fog" args={[sparksPalette[3], 45, 60]} />
           <Fire color="#ffffff" scale={[17, 12, 4]} position={[0.5, 4, -5]} />

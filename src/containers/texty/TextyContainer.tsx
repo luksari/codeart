@@ -18,7 +18,7 @@ export const TextyContainer = () => {
         <div className={styles['title-wrapper']}>
           <h1 className={styles.title}>Texty</h1>
         </div>
-        <p className={styles.paragraph}>AAAAAAAA</p>
+        <p className={styles.paragraph}>Texty</p>
         <Sketch
           className={styles.canvas}
           preload={textyPreload}

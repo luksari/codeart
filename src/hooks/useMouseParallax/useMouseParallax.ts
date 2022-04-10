@@ -1,12 +1,12 @@
-import { MutableRefObject, useRef } from 'react';
+import { MutableRefObject } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
 type UseMouseParallaxParams = {
   invertXY: boolean;
-  xFactor: number;
-  yFactor: number;
-  zFactor: number;
+  xFactor?: number;
+  yFactor?: number;
+  zFactor?: number;
 };
 
 export const useMouseParallax = <T extends THREE.Object3D>(

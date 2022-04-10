@@ -1,19 +1,11 @@
-import { extend, GroupProps, useFrame, useThree } from '@react-three/fiber';
+import { extend, GroupProps, useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import { Group } from 'three';
-import * as THREE from 'three';
 import * as meshline from 'meshline';
 import { generateSparks } from '@src/containers/fuego/sparks/Sparks.utils';
 import { useMouseParallax } from '@src/hooks/useMouseParallax/useMouseParallax';
 
 extend(meshline);
-
-type Spark = {
-  color: string;
-  width: number;
-  speed: number;
-  curve: number[];
-};
 
 type FatlineProps = {
   curve: number[];
@@ -23,21 +15,22 @@ type FatlineProps = {
 };
 
 const Fatline = ({ curve, width, color, speed }: FatlineProps) => {
-  const material = useRef<meshline.MeshLineMaterial>();
+  const materialRef = useRef<meshline.MeshLineMaterial | null>(null!);
 
   useFrame(() => {
-    if (!material.current?.uniforms) {
+    if (!materialRef.current?.uniforms) {
       return;
     }
 
-    material.current.uniforms.dashOffset.value -= speed;
+    materialRef.current.uniforms.dashOffset.value -= speed;
   });
+
   return (
     <mesh>
       <meshLine attach="geometry" points={curve} />
       <meshLineMaterial
         attach="material"
-        ref={material}
+        ref={(val) => (materialRef.current = val)}
         depthTest={true}
         lineWidth={width}
         color={color}
@@ -63,11 +56,15 @@ export const Sparks = ({
 }: SparksProps) => {
   const linesRef = generateSparks({ count, colors, radius });
 
-  const ref = useRef<Group | null>(null);
+  const ref = useRef<Group | null>(null!);
   useMouseParallax(ref, { invertXY: false });
 
   return (
-    <group ref={ref} scale={[0.16, 0.1, 1]} {...groupProps}>
+    <group
+      ref={(val) => (ref.current = val)}
+      scale={[0.16, 0.1, 1]}
+      {...groupProps}
+    >
       {linesRef.map((props, index) => (
         <Fatline key={index} {...props} />
       ))}

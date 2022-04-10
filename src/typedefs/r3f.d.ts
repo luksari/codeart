@@ -1,8 +1,7 @@
 import { Object3DNode } from '@react-three/fiber';
-import { TextGeometry } from 'three-stdlib/geometries/TextGeometry';
 import { MeshLine, MeshLineMaterial } from 'meshline';
 import { MeshWobbleMaterial } from '@react-three/drei';
-import { UnrealBloomPass } from 'three-stdlib';
+import { TextGeometry, UnrealBloomPass } from 'three-stdlib';
 import { FireMaterial } from '@src/containers/fuego/fire/fireMaterial';
 
 declare global {

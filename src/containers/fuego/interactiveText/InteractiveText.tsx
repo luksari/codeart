@@ -1,9 +1,8 @@
-import React, { Suspense, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSpring } from '@react-spring/core';
-import { TextMesh } from '@src/components/three/textMesh/TextMesh';
+import { WobblyText } from '@src/components/three/wobblyText/WobblyText';
 import { GroupProps } from '@react-three/fiber';
-
-export const InteractiveText = (props: GroupProps) => {
+const InteractiveText = (props: GroupProps) => {
   const [toggleVal, setToggleVal] = useState(0);
   const [{ animValue }] = useSpring(
     () => ({
@@ -33,22 +32,22 @@ export const InteractiveText = (props: GroupProps) => {
 
   return (
     <group {...props}>
-      <Suspense fallback={null}>
-        <TextMesh
-          position={[-3, initY, 0]}
-          size={1}
-          fontSize={16}
-          color={animColor}
-          onClick={handleClick}
-          scale-y={animScale}
-          position-y={animPosY}
-          onPointerOver={handlePointerOver}
-          onPointerOut={handlePointerOut}
-          font="vogue"
-        >
-          Fuego
-        </TextMesh>
-      </Suspense>
+      <WobblyText
+        position={[-3, initY, 0]}
+        size={1}
+        fontSize={16}
+        color={animColor}
+        onClick={handleClick}
+        scale-y={animScale}
+        position-y={animPosY}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+        font="vogue"
+      >
+        Fuego
+      </WobblyText>
     </group>
   );
 };
+
+export default InteractiveText;
