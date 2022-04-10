@@ -8,23 +8,33 @@ export type GalleryDataModel = {
   cover: StaticImageData | string;
 };
 
-const size = (idx: number) => (idx % 2 ? '400/600' : '600/400');
+function getRandomInt(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+const size = (idx: number) =>
+  idx % 2
+    ? `${getRandomInt(300, 500)}/${getRandomInt(600, 700)}`
+    : `${getRandomInt(600, 700)}/${getRandomInt(400, 500)}`;
 
 export const galleryData = [
-  {
-    title: 'Sombrero',
-    slug: '/sombrero',
-    cover: 'https://picsum.photos/200/300',
-  },
-  { title: 'Sombrero', slug: '/sombrero', cover: sombrero },
-  { title: 'Sombrero', slug: '/sombrero', cover: sombrero },
-  { title: 'Sombrero', slug: '/sombrero', cover: sombrero },
-  { title: 'Skate', slug: '/skate', cover: skate },
-  { title: 'Sombrero', slug: '/sombrero', cover: sombrero },
-  { title: 'Skate', slug: '/skate', cover: skate },
-  { title: 'Skate', slug: '/skate', cover: skate },
-  { title: 'Skate', slug: '/skate', cover: skate },
-  { title: 'Skate', slug: '/skate', cover: skate },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
 ].map((elem, idx) => ({
   ...elem,
   cover: `https://picsum.photos/${size(idx)}?random=${idx}`,

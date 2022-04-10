@@ -22,9 +22,12 @@ export const Gallery = () => {
       >
         <ul className={styles.elements}>
           {galleryData.map((elem, idx) => (
-            <li className={styles.element} key={`${id}${idx}`}>
-              <GalleryLink elem={elem} />
-            </li>
+            <GalleryLink
+              elem={elem}
+              className={styles.element}
+              layoutId={`container-${idx}`}
+              key={`${id}${idx}`}
+            />
           ))}
         </ul>
       </div>
