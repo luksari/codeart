@@ -2,12 +2,12 @@ import p5Types from 'p5';
 
 const width = 700;
 const height = 800;
-const noOfCircles = 70;
+const noOfCircles = 65;
 
 const wait = 5000; // 5s
 
 let time: number;
-let currRotation = 50;
+let currRotation = 70;
 let cam: p5Types.Camera;
 
 export const setupSombrero = (p: p5Types, canvasParentRef: Element) => {
@@ -16,7 +16,7 @@ export const setupSombrero = (p: p5Types, canvasParentRef: Element) => {
   p.pixelDensity(2.0);
 
   cam = p.createCamera();
-  cam.setPosition(0, -5, 230);
+  cam.setPosition(0, -5, 170);
 
   time = p.millis();
 };
@@ -24,9 +24,10 @@ export const setupSombrero = (p: p5Types, canvasParentRef: Element) => {
 export const drawSombrero = (palette: string[]) => (p: p5Types) => {
   p.clear();
   if (p.millis() - time >= wait) {
-    currRotation = p.random(55, 75);
+    currRotation = p.random(65, 85);
     time = p.millis();
   }
+
   p.rotateX(currRotation);
 
   p.rotateY(p.sin(p.frameCount) * p.lerp(0, 25, 0.5));
