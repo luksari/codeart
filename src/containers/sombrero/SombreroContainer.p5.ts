@@ -11,7 +11,8 @@ let currRotation = 70;
 let cam: p5Types.Camera;
 
 export const setupSombrero = (p: p5Types, canvasParentRef: Element) => {
-  p.createCanvas(width, height, p.WEBGL).parent(canvasParentRef);
+  const x = p.createCanvas(width, height, p.WEBGL).parent(canvasParentRef);
+  console.log(x);
   p.angleMode('degrees');
   p.pixelDensity(2.0);
 

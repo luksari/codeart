@@ -3,15 +3,19 @@ import Image from 'next/image';
 
 import dynamic from 'next/dynamic';
 import {
-  setupSombrero,
   drawSombrero,
+  setupSombrero,
 } from '@src/containers/sombrero/SombreroContainer.p5';
 
 import nlpArr from '@src/assets/palette.json';
+import { SketchProps } from 'react-p5';
 
 const palette = nlpArr[37];
 
-const Sketch = dynamic(() => import('react-p5'), { ssr: false });
+const Sketch = dynamic<SketchProps>(
+  () => import('react-p5').then((mod) => mod.default),
+  { ssr: false }
+);
 
 export const SombreroContainer = () => {
   return (
