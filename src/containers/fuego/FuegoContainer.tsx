@@ -17,10 +17,11 @@ const InteractiveText = dynamic(
 import { Fire } from '@src/containers/fuego/fire/fire';
 import { Effects } from '@src/containers/fuego/effects/Effects';
 import * as THREE from 'three';
+import { PageWrapper } from '@src/components/pageWrapper/PageWrapper';
 
 export const FuegoContainer = () => {
   return (
-    <div>
+    <PageWrapper>
       <Canvas
         shadows
         style={{
@@ -51,6 +52,6 @@ export const FuegoContainer = () => {
           <Effects />
         </Suspense>
       </Canvas>
-    </div>
+    </PageWrapper>
   );
 };
