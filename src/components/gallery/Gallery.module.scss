@@ -28,8 +28,6 @@
 
 .content {
   display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -38,9 +36,6 @@
 }
 
 .gridContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: calc(100vw + 128px);
   height: calc(100vh + 128px);
 
@@ -73,6 +68,7 @@
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     align-items: center;
+    justify-content: center;
     padding: 0 10vmin;
   }
 

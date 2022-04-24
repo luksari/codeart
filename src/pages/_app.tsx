@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <>
       <NextNProgress
-        color="#29D29D"
+        color="#BADA55"
         startPosition={0.3}
         stopDelayMs={200}
         height={3}
