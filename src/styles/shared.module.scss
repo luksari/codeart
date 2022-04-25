@@ -1,0 +1,16 @@
+@mixin baseButton {
+  text-align: center;
+  outline: none;
+  padding: 12px 8px;
+  border: 2px solid black;
+  font-weight: 700;
+  margin-left: auto;
+  box-shadow: none;
+  background: #fff;
+  min-width: 135px;
+
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
+}

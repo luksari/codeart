@@ -3,85 +3,78 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
+  background: var(--bgColor);
+  color: var(--baseColor);
 }
 
 .wrapper {
-  max-width: 1000px;
+  max-width: 1100px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
 }
 
 .canvas {
-  position: absolute;
-  display: block;
+  position: relative;
+  width: 100%;
+  height: 600px;
   z-index: 0;
-  left: 50%;
-  transform: translate(-65%, -35%);
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.title {
-  font-size: 9rem;
-  color: #fff;
-  line-height: 9rem;
-  &::after {
-    pointer-events: none;
-    content: 'Sombrero';
+  & > canvas {
+    top: 0;
     position: absolute;
-    font-size: 45rem;
-    left: -10%;
-    top: 30%;
-    opacity: 0.3;
-    z-index: 0;
-    user-select: none;
   }
 }
 
 .imageWrapper {
-  margin-top: 30px;
-  width: 9rem;
-  height: 9rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.titleWrapper {
-  width: 100%;
-  display: flex;
-  gap: 2rem;
-  margin-top: 10rem;
+  display: inline-block;
+  justify-content: center;
   align-items: center;
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  bottom: -20px;
+  margin: -36px 16px 0;
 }
 
 .paragraph {
+  color: inherit;
   z-index: 1;
   font-size: 1.5rem;
-  margin-left: 0;
-  margin-right: auto;
-  margin-top: 1rem;
-  line-height: 1.9rem;
+  line-height: 1.25;
 
   & > .decor {
     font-size: 3.5rem;
     font-weight: bold;
   }
 
-  & > code {
+  & code {
     font-size: 1.3rem;
     padding: 2px 8px;
     background: #2a2a2a;
     color: var(--accentColor);
   }
 
-  & > a {
+  & a {
     display: inline-block;
-    color: #000000;
+    color: inherit;
     text-decoration: underline;
-    text-decoration-color: #000000;
+    text-decoration-color: inherit;
     text-decoration-thickness: 3px;
     text-underline-offset: 4px;
+
+    &:hover,
+    &:focus {
+      background: var(--baseColor);
+      color: var(--accentColor);
+    }
   }
+}
+
+.descriptionWrapper {
+  display: flex;
+  flex-flow: column nowrap;
 }

@@ -1,0 +1,6 @@
+@use '../../styles/shared.module' as shared;
+
+.button {
+  @include shared.baseButton;
+  border-radius: 8px 4px 4px 8px;
+}

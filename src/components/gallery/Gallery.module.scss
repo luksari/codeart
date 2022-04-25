@@ -1,3 +1,5 @@
+@use '../../styles/shared.module' as shared;
+
 $grid_elem_width: 640px;
 
 .header {
@@ -12,20 +14,8 @@ $grid_elem_width: 640px;
 }
 
 .displayToggleButton {
-  outline: none;
-  padding: 12px 8px;
-  border: 2px solid black;
-  font-weight: 700;
-  margin-left: auto;
-  text-transform: uppercase;
+  @include shared.baseButton;
   border-radius: 4px 8px 8px 4px;
-  box-shadow: none;
-  background: #fff;
-
-  &:hover {
-    background: #000;
-    color: #fff;
-  }
 }
 
 .content {

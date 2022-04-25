@@ -3,11 +3,13 @@ import { motion, Variants } from 'framer-motion';
 import { defaultTransition } from '@src/utils/framer.utils';
 import clsx from 'clsx';
 import styles from './PageWrapper.module.scss';
+import { BackButton } from '@src/components/backButton/BackButton';
+import { PageTitle } from '@src/components/pageTitle/PageTitle';
 
 type PageWrapperProps = {
   children?: ReactNode;
+  title: string;
   renderDescription: () => ReactNode;
-  renderTitle: () => ReactNode;
   renderContent: () => ReactNode;
   className?: string;
   classes?: {
@@ -17,10 +19,10 @@ type PageWrapperProps = {
   };
 };
 
-const variants: Variants = {
+const wrapperVariants: Variants = {
   initial: {
     opacity: 0,
-    y: 100,
+    y: 200,
   },
   enter: {
     opacity: 1,
@@ -28,40 +30,59 @@ const variants: Variants = {
   },
 };
 
+const titleVariants: Variants = {
+  initial: {
+    opacity: 0,
+    scale: 0,
+  },
+  enter: {
+    opacity: 1,
+    scale: 1,
+  },
+};
+
 export const PageWrapper = ({
   children,
+  title,
   renderContent,
   renderDescription,
-  renderTitle,
   className,
   classes,
 }: PageWrapperProps) => {
   return (
-    <motion.div
-      variants={variants}
-      initial="initial"
-      animate="enter"
-      transition={[defaultTransition]}
-      className={clsx(styles.pageWrapper, [className])}
-    >
+    <div>
+      <BackButton className={styles.backBtn} />
       <motion.div
-        className={clsx(styles.titleWrapper, [classes?.titleWrapper])}
+        variants={wrapperVariants}
+        initial="initial"
+        animate="enter"
+        transition={[defaultTransition]}
+        className={clsx(styles.pageWrapper, [className])}
       >
-        {renderTitle()}
+        <motion.div
+          className={clsx(styles.contentWrapper, [classes?.contentWrapper])}
+        >
+          {renderContent()}
+        </motion.div>
+        <motion.div
+          className={clsx(styles.titleWrapper, [classes?.titleWrapper])}
+          variants={titleVariants}
+          transition={[defaultTransition]}
+          initial="initial"
+          animate="enter"
+        >
+          <PageTitle title={title} />
+        </motion.div>
+        <motion.div
+          className={clsx(styles.descriptionWrapper, [
+            classes?.descriptionWrapper,
+          ])}
+        >
+          {renderDescription()}
+        </motion.div>
+
+        {children}
       </motion.div>
-      <motion.div
-        className={clsx(styles.descriptionWrapper, [
-          classes?.descriptionWrapper,
-        ])}
-      >
-        {renderDescription()}
-      </motion.div>
-      <motion.div
-        className={clsx(styles.contentWrapper, [classes?.contentWrapper])}
-      >
-        {renderContent()}
-      </motion.div>
-      {children}
-    </motion.div>
+    </div>
   );
 };

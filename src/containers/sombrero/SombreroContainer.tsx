@@ -18,37 +18,35 @@ const Sketch = dynamic<SketchProps>(
   { ssr: false, loading: () => <p>loading...</p> }
 );
 
-const renderTitle = () => {
-  return (
-    <div className={styles.titleWrapper}>
-      <h1 className={styles.title}>Sombrero</h1>
-      <div className={styles.imageWrapper}>
-        <Image
-          src={'/images/pepe-sombrero.gif'}
-          alt="Funny from with sombrero and shac-shacs"
-          layout="fill"
-        />
-      </div>
-    </div>
-  );
-};
-
 const renderDescription = () => {
   return (
-    <p className={styles.paragraph}>
-      <span className={styles.decor}>I</span> have created this{' '}
-      <strong>Sombrero</strong> with <code>p5.js</code> algorithm, by
-      experimenting with <strong>sinus and cosinus</strong> functions in order
-      to create sombrero-like shape, basing on <code>x,y,z</code> coordinates
-      system. <br />
-      There were few motivations that inspired me to do that. Firstly, I have
-      felt little bit devoid of energy during the winter, so I have been trying
-      to think about positive things, like <b>Mexican culture</b>. <br />
-      Also my inspiration was <code>:pepemexicano:</code> custom emoji in
-      company that I work with,
-      <a href="https://tsh.io/">The Software House</a>. I have found it really
-      powerful during casual conversations.
-    </p>
+    <div className={styles.descriptionWrapper}>
+      <p className={styles.paragraph}>
+        <span className={styles.decor}>I</span> have created this{' '}
+        <strong>Sombrero</strong> with <code>p5.js</code> algorithm, by
+        experimenting with <strong>sinus and cosinus</strong> functions in order
+        to create sombrero-like shape, basing on <code>x,y,z</code> coordinates
+        system. <br />
+        There were few motivations that inspired me to do that. Firstly, I have
+        felt little bit devoid of energy during the winter, so I have been
+        trying to think about positive, warm and energizing things, like
+        <b> Mexican culture</b>.
+        <br />
+      </p>
+      <p className={styles.paragraph}>
+        Also my inspiration was <code>:pepemexicano:</code>
+        <span className={styles.imageWrapper}>
+          <Image
+            src={'/images/pepe-sombrero.gif'}
+            alt="Funny frog with sombrero and shac-shacs"
+            layout="fill"
+          />
+        </span>
+        custom emoji in company that I work with,
+        <a href="https://tsh.io/">The Software House</a>. I have found it really
+        powerful during casual conversations to emphasize joy and excitement.
+      </p>
+    </div>
   );
 };
 
@@ -66,14 +64,17 @@ export const SombreroContainer = () => {
   return (
     <div
       className={styles.container}
-      style={{ background: palette[2], [`--accentColor`]: palette[3] }}
+      style={{
+        ['--bgColor']: palette[2],
+        [`--accentColor`]: palette[3],
+        ['--baseColor']: '#2a2a2a',
+      }}
     >
       <PageWrapper
-        renderTitle={renderTitle}
+        title="Sombrero"
         renderDescription={renderDescription}
         renderContent={renderContent}
         className={styles.wrapper}
-        classes={{}}
       />
     </div>
   );

@@ -1,0 +1,17 @@
+.title {
+  font-size: 9rem;
+  line-height: 0;
+  color: #fff;
+
+  &::after {
+    pointer-events: none;
+    content: attr(data-title);
+    position: absolute;
+    font-size: 45rem;
+    left: -50px;
+    top: 30rem;
+    opacity: 0.3;
+    z-index: 0;
+    user-select: none;
+  }
+}
