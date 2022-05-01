@@ -1,6 +1,7 @@
 @use '../../styles/shared.module' as shared;
 
 $grid_elem_width: 640px;
+$grid_elem_cols: 5;
 
 .header {
   display: flex;
@@ -41,7 +42,7 @@ $grid_elem_width: 640px;
     left: -64px;
     justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(3, $grid_elem_width);
+    grid-template-columns: repeat($grid_elem_cols, $grid_elem_width);
   }
 
   .element {

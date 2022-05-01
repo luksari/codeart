@@ -1,5 +1,3 @@
-import skate from 'src/assets/skate.png';
-import sombrero from 'src/assets/sombrero.png';
 import { StaticImageData } from 'next/image';
 
 export type GalleryDataModel = {
@@ -20,6 +18,18 @@ const size = (idx: number) =>
     : `${getRandomInt(600, 700)}/${getRandomInt(400, 500)}`;
 
 export const galleryData = [
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
+  { title: 'Sombrero', slug: '/sombrero' },
   { title: 'Sombrero', slug: '/sombrero' },
   { title: 'Sombrero', slug: '/sombrero' },
   { title: 'Sombrero', slug: '/sombrero' },

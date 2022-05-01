@@ -1,31 +1,38 @@
 import Link from 'next/link';
 import Img from 'next/image';
-import React, { FC } from 'react';
+import React, { FC, forwardRef } from 'react';
 import styles from './GalleryLink.module.scss';
 import { GalleryDataModel } from '@src/components/gallery/Gallery.data';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
 import { defaultTransition } from '@src/utils/framer.utils';
+import { motion } from 'framer-motion';
 
-type Props = {
+type GalleryLinkProps = {
   elem: GalleryDataModel;
   className?: string;
   layoutId: string;
 };
 
-export const GalleryLink: FC<Props> = ({ elem, className, layoutId }) => {
-  return (
-    <motion.li
-      className={clsx([styles.thumbnailWrapper, className])}
-      layoutId={layoutId}
-      transition={defaultTransition}
-      layout
-    >
-      <Link href={elem.slug} passHref={true}>
-        <a className={styles.imageLink}>
-          <Img src={elem.cover} objectFit="contain" layout="fill" />
-        </a>
-      </Link>
-    </motion.li>
-  );
-};
+export const GalleryLink = forwardRef<HTMLLIElement, GalleryLinkProps>(
+  ({ elem, className, layoutId }, ref) => {
+    return (
+      <motion.li
+        className={clsx([styles.thumbnailWrapper, className])}
+        layoutId={layoutId}
+        transition={defaultTransition}
+        ref={ref}
+        layout
+      >
+        <Link href={elem.slug} passHref={true}>
+          <a className={styles.imageLink}>
+            <Img src={elem.cover} objectFit="cover" layout="fill" />
+          </a>
+        </Link>
+      </motion.li>
+    );
+  }
+);
+
+GalleryLink.displayName = 'GalleryLink';
+
+export const MotionGalleryLink = motion(GalleryLink);

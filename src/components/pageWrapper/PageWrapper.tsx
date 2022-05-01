@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { defaultTransition } from '@src/utils/framer.utils';
+import { defaultSpringTransition } from '@src/utils/framer.utils';
 import clsx from 'clsx';
 import styles from './PageWrapper.module.scss';
 import { BackButton } from '@src/components/backButton/BackButton';
@@ -56,7 +56,7 @@ export const PageWrapper = ({
         variants={wrapperVariants}
         initial="initial"
         animate="enter"
-        transition={[defaultTransition]}
+        transition={defaultSpringTransition}
         className={clsx(styles.pageWrapper, [className])}
       >
         <motion.div
@@ -67,7 +67,7 @@ export const PageWrapper = ({
         <motion.div
           className={clsx(styles.titleWrapper, [classes?.titleWrapper])}
           variants={titleVariants}
-          transition={[defaultTransition]}
+          transition={defaultSpringTransition}
           initial="initial"
           animate="enter"
         >
