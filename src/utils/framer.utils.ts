@@ -1,9 +1,8 @@
 import { Transition } from 'framer-motion';
 import { config } from '@react-spring/core';
 
-export const defaultTransition: Transition = {
-  type: 'tween',
-  duration: 0.15,
+export const defaultTweenTransition: Transition = {
+  duration: 1,
 };
 
 export const defaultSpringTransition: Transition = {

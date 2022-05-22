@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Img from 'next/image';
-import React, { FC, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import styles from './GalleryLink.module.scss';
 import { GalleryDataModel } from '@src/components/gallery/Gallery.data';
 import clsx from 'clsx';
-import { defaultTransition } from '@src/utils/framer.utils';
+import { defaultTweenTransition } from '@src/utils/framer.utils';
 import { motion } from 'framer-motion';
 
 type GalleryLinkProps = {
@@ -19,7 +19,7 @@ export const GalleryLink = forwardRef<HTMLLIElement, GalleryLinkProps>(
       <motion.li
         className={clsx([styles.thumbnailWrapper, className])}
         layoutId={layoutId}
-        transition={defaultTransition}
+        transition={defaultTweenTransition}
         ref={ref}
         layout
       >

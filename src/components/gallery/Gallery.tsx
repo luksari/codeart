@@ -2,23 +2,10 @@ import { useEffect, useState } from 'react';
 import { galleryData } from '@src/components/gallery/Gallery.data';
 import { MotionGalleryLink } from '@src/components/gallery/galleryLink/GalleryLink';
 import styles from './Gallery.module.scss';
-import { AnimationControls, useAnimation } from 'framer-motion';
+import { useAnimation } from 'framer-motion';
 import { Loader } from '@src/components/loader/Loader';
-import { defaultSpringTransition } from '@src/utils/framer.utils';
-
-const gridColMove = [600, 400, 600, 800, 600];
-
-const galleryAnimationSequence = async (controls: AnimationControls) => {
-  await controls.set((idx) => ({
-    y: gridColMove[idx % 5],
-    scale: 1.1,
-    transition: defaultSpringTransition,
-  }));
-
-  await controls.start(() => ({
-    y: 0,
-  }));
-};
+import { galleryAnimationSequence, startLoaderSequence } from './Gallery.utils';
+import { defaultTweenTransition } from '@src/utils/framer.utils';
 
 export const Gallery = () => {
   const loaderControls = useAnimation();
@@ -27,12 +14,7 @@ export const Gallery = () => {
 
   useEffect(() => {
     const timeout = setTimeout(async () => {
-      await loaderControls.start({
-        opacity: 0,
-        transition: defaultSpringTransition,
-        display: 'none',
-      });
-
+      await startLoaderSequence(loaderControls);
       await galleryAnimationSequence(columnsControls);
     }, 2000);
 
@@ -61,7 +43,7 @@ export const Gallery = () => {
               <MotionGalleryLink
                 elem={elem}
                 className={styles.element}
-                transition={defaultSpringTransition}
+                transition={defaultTweenTransition}
                 layoutId={`container-${idx}`}
                 key={elem.slug}
                 custom={idx}

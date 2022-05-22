@@ -2,7 +2,7 @@ import Spline, { SplineProps } from '@splinetool/react-spline';
 import { ForwardedRef } from 'react';
 
 type WrappedSplineProps = {
-  splineRef: ForwardedRef<HTMLDivElement>;
+  splineRef: ForwardedRef<HTMLCanvasElement>;
 } & SplineProps;
 
 const WrappedSpline = ({ splineRef, ...props }: WrappedSplineProps) => {

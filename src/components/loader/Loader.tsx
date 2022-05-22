@@ -1,6 +1,6 @@
 import styles from './Loader.module.scss';
 import { AnimationControls, motion, Variants } from 'framer-motion';
-import { defaultTransition } from '@src/utils/framer.utils';
+import { defaultTweenTransition } from '@src/utils/framer.utils';
 
 type LoaderProps = {
   title: string;
@@ -38,7 +38,7 @@ export const Loader = ({
         variants={variants}
         initial={'initial'}
         animate={'enter'}
-        transition={defaultTransition}
+        transition={defaultTweenTransition}
         className={styles.loaderText}
       >
         {title}

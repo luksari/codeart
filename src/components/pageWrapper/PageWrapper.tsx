@@ -1,10 +1,13 @@
 import { ReactNode } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { defaultSpringTransition } from '@src/utils/framer.utils';
+import { defaultTweenTransition } from '@src/utils/framer.utils';
 import clsx from 'clsx';
 import styles from './PageWrapper.module.scss';
 import { BackButton } from '@src/components/backButton/BackButton';
-import { PageTitle } from '@src/components/pageTitle/PageTitle';
+import {
+  MotionPageTitle,
+  PageTitle,
+} from '@src/components/pageTitle/PageTitle';
 
 type PageWrapperProps = {
   children?: ReactNode;
@@ -38,6 +41,10 @@ const titleVariants: Variants = {
   enter: {
     opacity: 1,
     scale: 1,
+    transition: {
+      duration: 1,
+      delay: 0.8,
+    },
   },
 };
 
@@ -56,7 +63,7 @@ export const PageWrapper = ({
         variants={wrapperVariants}
         initial="initial"
         animate="enter"
-        transition={defaultSpringTransition}
+        transition={defaultTweenTransition}
         className={clsx(styles.pageWrapper, [className])}
       >
         <motion.div
@@ -64,15 +71,14 @@ export const PageWrapper = ({
         >
           {renderContent()}
         </motion.div>
-        <motion.div
-          className={clsx(styles.titleWrapper, [classes?.titleWrapper])}
-          variants={titleVariants}
-          transition={defaultSpringTransition}
-          initial="initial"
-          animate="enter"
-        >
-          <PageTitle title={title} />
-        </motion.div>
+        <div className={clsx(styles.titleWrapper, [classes?.titleWrapper])}>
+          <MotionPageTitle
+            title={title}
+            variants={titleVariants}
+            initial="initial"
+            animate="enter"
+          />
+        </div>
         <motion.div
           className={clsx(styles.descriptionWrapper, [
             classes?.descriptionWrapper,
