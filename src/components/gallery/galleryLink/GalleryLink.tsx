@@ -25,7 +25,7 @@ export const GalleryLink = forwardRef<HTMLLIElement, GalleryLinkProps>(
       >
         <Link href={elem.slug} passHref={true}>
           <a className={styles.imageLink}>
-            <Img src={elem.cover} objectFit="cover" layout="fill" />
+            <Img src={elem.cover} objectFit="cover" layout="fill" priority />
           </a>
         </Link>
       </motion.li>

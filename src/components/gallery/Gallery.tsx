@@ -14,6 +14,7 @@ export const Gallery = () => {
 
   useEffect(() => {
     const timeout = setTimeout(async () => {
+      console.log('run');
       await startLoaderSequence(loaderControls);
       await galleryAnimationSequence(columnsControls);
     }, 2000);
@@ -45,7 +46,7 @@ export const Gallery = () => {
                 className={styles.element}
                 transition={defaultTweenTransition}
                 layoutId={`container-${idx}`}
-                key={elem.slug}
+                key={elem.id}
                 custom={idx}
                 animate={columnsControls}
               />
